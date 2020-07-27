@@ -16,7 +16,7 @@ public class EmployeeController {
         Employee employee= this.employeeRepository.findEmployeeByEmail(employeeDto.getEmail());
         if(employee==null) return "no";
         if(employee.getPassword().equals(employeeDto.getPassword())){
-            return employeeDto.getId();
+            return employee.getId();
         }else{
             return "no";
         }

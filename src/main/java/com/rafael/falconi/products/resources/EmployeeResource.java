@@ -23,12 +23,14 @@ public class EmployeeResource {
     private EmployeeController employeeController;
 
     @PostMapping(value = LOGIN)
-    public String login(@Valid @RequestBody EmployeeDto employeeDto) throws LoginException{
+    public EmployeeDto login(@Valid @RequestBody EmployeeDto employeeDto) throws LoginException{
         String data=this.employeeController.login(employeeDto);
         if(data=="no"){
             throw new LoginException();
         }else{
-            return data;
+           EmployeeDto employeeDto1=new EmployeeDto();
+           employeeDto1.setId(data);
+           return  employeeDto1;
         }
     }
     @PostMapping(value=SIGIN)
